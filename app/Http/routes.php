@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Http\Request;
+
+Route::get('/', [
+  'uses' => 'MainController@getHome',
+  'as' => 'home'
+]);
+
+Route::get('/universities', [
+  'uses' => 'MainController@getUniversities',
+  'as' => 'universities'
+]);
 
 /*
 |--------------------------------------------------------------------------
