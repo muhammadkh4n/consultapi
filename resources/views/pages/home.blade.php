@@ -3,5 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
-  <h1>Home Page</h1>
+  <div class="container text-center">
+    <h1>Home Page</h1>
+    <h2 class="text-danger">Under Construction</h2>
+  </div>
 @endsection

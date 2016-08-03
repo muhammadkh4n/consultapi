@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="{{ @url()->to('src/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ @url()->to('src/css/bootstrap-theme.min.css') }}">
+  <link rel="stylesheet" href="{{ @url()->to('src/css/style.css') }}">
   @yield('styles')
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,9 +20,7 @@
 </head>
 <body>
 @include('includes.header')
-<div class="container">
-  @yield('content')
-</div>
+@yield('content')
 @include('includes.footer')
 
 <script src="{{ @url()->to('src/js/jquery-2.2.4.min.js') }}"></script>

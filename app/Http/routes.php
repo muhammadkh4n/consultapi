@@ -11,18 +11,6 @@
 |
 */
 
-use Illuminate\Http\Request;
-
-Route::get('/', [
-  'uses' => 'MainController@getHome',
-  'as' => 'home'
-]);
-
-Route::get('/universities', [
-  'uses' => 'MainController@getUniversities',
-  'as' => 'universities'
-]);
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -35,5 +23,21 @@ Route::get('/universities', [
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', [
+        'uses' => 'MainController@getHome',
+        'as' => 'home'
+    ]);
+
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard-list');
+    })->name('admin.dashboard');
+
+    Route::get('/admin/dashboard/add', function () {
+        $countries = Countries::getList('en', 'php', 'cldr');
+        return view('admin.dashboard-form' , ['countries' => $countries]);
+    })->name('admin.dashboard.add');
+
+    Route::post('/admin/dashboard/add', function () {
+        return redirect()->back();
+    });
 });
