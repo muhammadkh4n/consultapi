@@ -8,7 +8,7 @@ else
     php $OPENSHIFT_DATA_DIR/composer.phar self-update
 fi
 
-( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar install )
+#( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar install )
 
 chmod 777 ${OPENSHIFT_REPO_DIR}storage
 chmod 777 ${OPENSHIFT_REPO_DIR}storage/app

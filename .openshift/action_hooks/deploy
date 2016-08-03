@@ -11,9 +11,9 @@ set -e
 echo 1>&2
 echo "Setting environment variables..." 1>&2
 
-export APPLICATION_ENV="${APPLICATION_ENV:-local}"
-export APP_ENV="${APPLICATION_ENV:-local}"
-if [[ "${APPLICATION_ENV:-}" != "local" ]]; then
+export APPLICATION_ENV="${APPLICATION_ENV:-production}"
+export APP_ENV="${APPLICATION_ENV:-production}"
+if [[ "${APPLICATION_ENV:-}" != "development" ]]; then
   export APP_DEBUG=false
 else
   export APP_DEBUG=true
