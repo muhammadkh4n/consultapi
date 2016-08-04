@@ -33,6 +33,13 @@ if [ ! -z "$OPENSHIFT_SECRET_TOKEN" ]; then
   if [ "$(type -t set_env_var)" == "function" ]; then
     set_env_var 'APP_KEY' $APP_KEY $OPENSHIFT_HOMEDIR/.env/user_vars
   fi
+else
+  cd $OPENSHIFT_REPO_DIR
+  export APP_KEY=$(php artisan --no-ansi key:generate --show)
+  if [ "$(type -t set_env_var)" == "function" ]; then
+    set_env_var 'APP_KEY' $APP_KEY $OPENSHIFT_HOMEDIR/.env/user_vars
+  fi
+  cd $OPENSHIFT_HOMEDIR
 fi
 
 if [ ! -z "$OPENSHIFT_POSTGRESQL_DB_HOST" ]; then
