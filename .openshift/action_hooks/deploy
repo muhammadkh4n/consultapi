@@ -67,5 +67,6 @@ fi
 
 echo "Running 'php artisan migrate --force'..."
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+php artisan config:cache
 php artisan migrate --force
 popd > /dev/null
