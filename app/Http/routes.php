@@ -28,16 +28,18 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'home'
     ]);
 
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard-list');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [
+        'uses' => 'UniversityController@getUniversities',
+        'as' => 'admin.dashboard'
+    ]);
 
-    Route::get('/admin/dashboard/add', function () {
-        $countries = Countries::getList('en', 'php', 'cldr');
-        return view('admin.dashboard-form' , ['countries' => $countries]);
-    })->name('admin.dashboard.add');
+    Route::get('/admin/dashboard/add', [
+        'uses' => 'UniversityController@getUniversityForm',
+        'as' => 'admin.dashboard.add'
+    ]);
 
-    Route::post('/admin/dashboard/add', function () {
-        return redirect()->back();
-    });
+    Route::post('/admin/dashboard/add', [
+        'uses' => 'UniversityController@addUniversity',
+        'as' => 'admin.dashboard.add'
+    ]);
 });

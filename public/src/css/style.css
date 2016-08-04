@@ -4,13 +4,13 @@ body {
 }
 body {
   padding-top: 52px;
-  padding-bottom: 52px;
 }
 #dashboard-container {
   padding: 0;
   height: 100%;
 }
 #dashboard-sidebar {
+  position: fixed;
   padding: 0;
   height: 100%;
   background-image: linear-gradient(to top, #fff 0, #f8f8f8 100%);
@@ -22,6 +22,7 @@ body {
 }
 #dashboard-content {
   padding: 0;
+  padding-bottom: 52px;
 }
 #dashboard-content h4 {
   padding: 20px 0;

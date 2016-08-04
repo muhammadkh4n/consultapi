@@ -12,8 +12,4 @@ class MainController extends Controller
     public function getHome() {
       return view('pages.home', ['email' => null]);
     }
-
-    public function getUniversities() {
-      return view('pages.universities');
-    }
 }

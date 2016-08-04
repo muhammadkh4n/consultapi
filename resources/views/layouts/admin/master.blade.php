@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col-sm-10" id="dashboard-content">
+    <div class="col-sm-10 col-sm-offset-2" id="dashboard-content">
       <h4 class="page-header text-center text-muted">@yield('dashboard-title')</h4>
       <div class="col-sm-12" id="dashboard-section">
         @yield ('dashboard-content')
