@@ -29,11 +29,7 @@ if [ ! -z "$OPENSHIFT_APP_DNS" ]; then
 fi
 
 if [ ! -z "$OPENSHIFT_SECRET_TOKEN" ]; then
-  export APP_KEY=${OPENSHIFT_SECRET_TOKEN:0:31}
-  if [ "$(type -t set_env_var)" == "function" ]; then
-    set_env_var 'APP_KEY' $APP_KEY $OPENSHIFT_HOMEDIR/.env/user_vars
-  fi
-else
+  #export APP_KEY=${OPENSHIFT_SECRET_TOKEN:0:31}
   cd $OPENSHIFT_REPO_DIR
   export APP_KEY=$(php artisan --no-ansi key:generate --show)
   if [ "$(type -t set_env_var)" == "function" ]; then
