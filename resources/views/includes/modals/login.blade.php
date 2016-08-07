@@ -1,6 +1,9 @@
-<div class="col-xs-12 text-center modal-spinner">
-  <img src='{{ @url()->to('src/img/spin.gif') }}' alt='Loading'>
+<div id="modal-spinner">
+  <div class="text-center modal-spinner-inner">
+    <img src='{{ @url()->to('src/img/spin.gif') }}' alt='Loading'>
+  </div>
 </div>
+
 <div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
   <form class="form-horizontal">
     <div class="modal-dialog" role="document">
