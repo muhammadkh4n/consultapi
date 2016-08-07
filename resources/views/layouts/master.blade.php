@@ -31,7 +31,7 @@
 <script>
   var modalContent;
   var modal = $('#loginModalContent');
-  var spinner = $('#modal-spinner');
+  var spinner = $('.modal-spinner');
 
   function getModal() {
     modalContent = modal.html();
