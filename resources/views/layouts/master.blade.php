@@ -31,11 +31,11 @@
 <script>
   var modalContent;
   var modal = $('#loginModalContent');
+  var spinner = $('#modal-spinner');
 
   function getModal() {
     modalContent = modal.html();
-    var loading = "<img src='{{ @url()->to('src/img/spin.gif') }}' alt='Loading'>";
-    modal.html(loading);
+    modal.html(spinner);
     $.ajax({
       url: '{{ route('user.register') }}',
       type: 'GET',

@@ -52,3 +52,13 @@ body {
   margin-bottom: 0;
   border-radius: 0;
 }
+.modal-spinner {
+  display: none;
+}
+.modal-content .modal-spinner {
+  padding: 20px 0;
+  display: block;
+}
+.modal-content .modal-spinner img {
+  width: 50px;
+}
