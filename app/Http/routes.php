@@ -28,6 +28,11 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'home'
     ]);
 
+    Route::get('/user/register', [
+        'uses' => 'UserController@getRegisterModal',
+        'as' => 'user.register'
+    ]);
+
     Route::get('/admin/dashboard', [
         'uses' => 'UniversityController@getUniversities',
         'as' => 'admin.dashboard'

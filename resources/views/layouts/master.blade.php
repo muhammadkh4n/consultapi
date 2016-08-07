@@ -27,5 +27,32 @@
 <script src="{{ @url()->to('src/js/bootstrap.min.js') }}"></script>
 <script src="{{ @url()->to('src/js/app.js') }}"></script>
 @yield('scripts')
+
+<script>
+  var modalContent;
+  var modal = $('#loginModalContent');
+
+  function getModal() {
+    modalContent = modal.html();
+    var loading = "<img src='{{ @url()->to('src/img/spin.gif') }}' alt='Loading'>";
+    modal.html(loading);
+    $.ajax({
+      url: '{{ route('user.register') }}',
+      type: 'GET',
+      success: function (res) {
+        console.log('SUCCESS');
+        modal.html(res.html);
+      },
+      error: function (res) {
+        console.log(res);
+        console.log('ERROR');
+      }
+    });
+  }
+
+  $('#login-modal').on('hide.bs.modal', function (e) {
+    modal.html(modalContent);
+  });
+</script>
 </body>
 </html>

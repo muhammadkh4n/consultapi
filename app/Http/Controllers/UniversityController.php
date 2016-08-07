@@ -10,7 +10,7 @@ use Monarobase\CountryList\CountryListFacade;
 class UniversityController extends Controller {
 
     public function getUniversities() {
-        $universities = University::all();
+        $universities = University::orderBy('created_at', 'desc')->get();
         return view('admin.dashboard-list', ['universities' => $universities]);
     }
 
