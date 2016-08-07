@@ -62,3 +62,12 @@ body {
 .modal-spinner-inner img {
   width: 50px;
 }
+#modalAlert {
+  display: none;
+}
+#login-modal #help-email,
+#login-modal #help-password,
+#login-modal #help-confirm,
+#login-modal #help-name {
+  display: block;
+}

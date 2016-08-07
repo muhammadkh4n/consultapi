@@ -16,8 +16,12 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="{{ @request()->segment(2) === 'dashboard' ? 'active' : null }}"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-          <li><a data-toggle="modal" data-target="#login-modal" href=""><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Login</a></li>
+          @if (auth()->check())
+            <li class="{{ @request()->segment(2) === 'dashboard' ? 'active' : null }}"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('user.logout') }}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+          @else
+            <li><a data-toggle="modal" data-target="#login-modal" href=""><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Login</a></li>
+          @endif
         </ul>
       </div>
     </div>

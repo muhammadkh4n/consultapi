@@ -29,12 +29,15 @@
 @yield('scripts')
 
 <script>
-  var modalContent;
+  var loginModal = $('#login-modal');
   var modal = $('#loginModalContent');
   var spinner = $('#modal-spinner').html();
+  var modalLogin = modal.html();
+  var modalRegister;
+
+  console.log({{ auth()->check() }});
 
   function getModal() {
-    modalContent = modal.html();
     modal.html(spinner);
     $.ajax({
       url: '{{ route('user.register') }}',
@@ -42,6 +45,7 @@
       success: function (res) {
         console.log('SUCCESS');
         modal.html(res.html);
+        modalRegister = modal.html();
       },
       error: function (res) {
         console.log(res);
@@ -50,8 +54,114 @@
     });
   }
 
-  $('#login-modal').on('hide.bs.modal', function (e) {
-    modal.html(modalContent);
+  function postLogin(e) {
+    e.preventDefault();
+
+    var data = {
+      email: $('#login-email').val(),
+      password: $('#login-password').val(),
+      remember: $('#remember-me').prop('checked'),
+      _token: '{{ csrf_token() }}'
+    };
+
+    modal.html(spinner);
+
+    $.ajax({
+      url: '{{ route('user.login') }}',
+      type: 'POST',
+      data: data,
+      success: function (res) {
+        location.reload();
+        console.log('SUCCESS');
+        console.log(res);
+      },
+      error: function (res) {
+        modal.html(modalLogin);
+
+        $('#login-email').val(data.email);
+        $('#login-password').val(data.password);
+        $('#remember-me').prop('checked', data.remember);
+
+        if (res.status == 422) {
+          var errors = $.parseJSON(res.responseText);
+          if (errors.email) {
+            $('#email-group').addClass('has-error');
+            $('#help-email').html(errors.email);
+          }
+          if (errors.password) {
+            $('#password-group').addClass('has-error');
+            $('#help-password').html(errors.password);
+          }
+        } else {
+          $('#modalAlert').append(res.responseText).addClass('alert-danger').show();
+        }
+        console.log(res);
+        console.log('ERROR');
+      }
+    });
+  }
+
+  function postRegister(e) {
+    e.preventDefault();
+
+    var data = {
+      name: $('#register-name').val(),
+      email: $('#register-email').val(),
+      password: $('#register-password').val(),
+      confirm: $('#register-confirm').val(),
+      _token: '{{ csrf_token() }}'
+    };
+
+    modal.html(spinner);
+
+    $.ajax({
+      url: '{{ route('user.register') }}',
+      type: 'POST',
+      data: data,
+      success: function (res) {
+        modal.html(modalLogin);
+        $('#register-toggle').hide();
+        $('#modalAlert').html(res + ' <strong>Login Now</strong>').addClass('alert-success').show();
+        console.log('SUCCESS');
+        console.log(res);
+      },
+      error: function (res) {
+        modal.html(modalRegister);
+
+        $('#register-name').val(data.name);
+        $('#register-email').val(data.email);
+        $('#register-password').val(data.password);
+        $('#register-confirm').val(data.confirm);
+
+        if (res.status == 422) {
+          var errors = $.parseJSON(res.responseText);
+          if (errors.name) {
+            $('#name-group').addClass('has-error');
+            $('#help-name').html(errors.name);
+          }
+          if (errors.email) {
+            $('#email-group').addClass('has-error');
+            $('#help-email').html(errors.email);
+          }
+          if (errors.password) {
+            $('#password-group').addClass('has-error');
+            $('#help-password').html(errors.password);
+          }
+          if (errors.confirm) {
+            $('#confirm-group').addClass('has-error');
+            $('#help-confirm').html(errors.confirm);
+          }
+        } else {
+          $('#modalAlert').append(res.responseText).addClass('alert-danger').show();
+        }
+        console.log(res);
+        console.log('ERROR');
+      }
+    });
+  }
+
+  loginModal.on('hidden.bs.modal', function (e) {
+    modal.html(modalLogin);
   });
 </script>
 </body>
