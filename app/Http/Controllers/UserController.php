@@ -50,10 +50,12 @@ class UserController extends Controller
         if ($req->ajax()) {
             $this->validate($req, [
                 'email' => 'bail|required|email',
-                'password' => 'required'
+                'password' => 'required|max:60'
             ]);
 
-            if (!auth()->attempt(['email' => $req->email, 'password' => $req->password], $req->remember)) {
+            $remember = $req['remember'] == 'true' ? true : false;
+
+            if (!auth()->attempt(['email' => $req->email, 'password' => $req->password], $remember)) {
                 return response('Email or password incorrect', 401);
             }
 
