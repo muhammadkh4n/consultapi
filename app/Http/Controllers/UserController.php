@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use App\UserLoginLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +56,10 @@ class UserController extends Controller
             if (!auth()->attempt(['email' => $req->email, 'password' => $req->password], $req->remember)) {
                 return response('Email or password incorrect', 401);
             }
+
+            $user = User::where('email', $req->email)->first();
+            $userLog = new UserLoginLog();
+            $user->user_logs()->save($userLog);
 
             return response('Login Successful!', 200);
         }
