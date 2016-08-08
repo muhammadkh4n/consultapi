@@ -14,8 +14,14 @@ class UniversityController extends Controller {
         return view('admin.dashboard-list', ['universities' => $universities]);
     }
 
-    public function getUniversityForm() {
+    public function getUniversityForm(Request $req) {
+        $user = auth()->user();
+        if (!$req->user()->admin) {
+            return redirect()->back();
+        }
+
         $countries = CountryListFacade::getList('en', 'php', 'cldr');
+
         return view('admin.dashboard-form', ['countries' => $countries]);
     }
 

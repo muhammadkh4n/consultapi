@@ -9,7 +9,10 @@
       <h4 class="text-uppercase text-center text-muted">Menu</h4>
       <div class="list-group">
         <a href="{{ route('admin.dashboard') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard') ? 'active' : null }}">University list</a>
-        <a href="{{ route('admin.dashboard.add') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.add') ? 'active' : null }}">Add University</a>
+        @if (auth()->user()->admin)
+          <a href="{{ route('admin.dashboard.add') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.add') ? 'active' : null }}">Add University</a>
+          <a href="{{ route('admin.dashboard.users') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.users') ? 'active' : null }}">All Users</a>
+        @endif
       </div>
     </div>
 

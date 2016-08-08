@@ -16,6 +16,33 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function getUsers(Request $req) {
+        if (!$req->user()->admin)
+            return redirect()->route('admin.dashboard');
+        $users = User::all();
+
+        return view('admin.dashboard-users', ['users' => $users]);
+    }
+
+    public function promoteUser($id) {
+        $user = User::find($id);
+        $user->admin = true;
+        $user->save();
+
+        return redirect()->back()->with(['success' => 'User #' . $user->id . ' => ' . $user->name . ' Set to Admin']);
+    }
+
+    public function demoteUser(Request $req, $id) {
+        if ($req->user()->id == $id) {
+            return redirect()->back()->with(['fail' => 'You can\'t demote Yourself']);
+        }
+        $user = User::find($id);
+        $user->admin = false;
+        $user->save();
+
+        return redirect()->back()->with(['success' => 'User #' . $user->id . ' => ' . $user->name . ' Set to Normal User']);
+    }
+
     public function getRegister(Request $req) {
         if ($req->ajax()) {
             $html = view('includes.modals.register')->render();

@@ -28,40 +28,76 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'home'
     ]);
 
-    Route::post('/user/login', [
-        'uses' => 'UserController@postLogin',
-        'as' => 'user.login'
-    ]);
+    /*
+     * --------------------------------------------
+     *           ALL ACCOUNT ROUTES
+     * --------------------------------------------
+     */
+    Route::group(['as' => 'user.'], function () {
+        Route::post('/user/login', [
+            'uses' => 'UserController@postLogin',
+            'as' => 'login'
+        ]);
 
-    Route::get('/user/register', [
-        'uses' => 'UserController@getRegister',
-        'as' => 'user.register'
-    ]);
+        Route::get('/user/register', [
+            'uses' => 'UserController@getRegister',
+            'as' => 'register'
+        ]);
 
-    Route::post('/user/register', [
-        'uses' => 'UserController@postRegister',
-        'as' => 'user.register'
-    ]);
+        Route::post('/user/register', [
+            'uses' => 'UserController@postRegister',
+            'as' => 'register'
+        ]);
 
-    Route::get('/user/logout', [
-        'uses' => 'UserController@getLogout',
-        'as' => 'user.logout'
-    ]);
+        Route::get('/user/logout', [
+            'uses' => 'UserController@getLogout',
+            'as' => 'logout'
+        ]);
+    });
 
+
+    /*
+     * -------------------------------------------------------
+     *                    AUTH ROUTES
+     * -------------------------------------------------------
+     */
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/admin/dashboard', [
-            'uses' => 'UniversityController@getUniversities',
-            'as' => 'admin.dashboard'
-        ]);
 
-        Route::get('/admin/dashboard/add', [
-            'uses' => 'UniversityController@getUniversityForm',
-            'as' => 'admin.dashboard.add'
-        ]);
+        /*
+         * ADMIN ROUTES
+         */
+        Route::group(['as' => 'admin.'], function () {
 
-        Route::post('/admin/dashboard/add', [
-            'uses' => 'UniversityController@addUniversity',
-            'as' => 'admin.dashboard.add'
-        ]);
+            Route::get('/user/dashboard', [
+                'uses' => 'UniversityController@getUniversities',
+                'as' => 'dashboard'
+            ]);
+
+            Route::get('/user/dashboard/add', [
+                'uses' => 'UniversityController@getUniversityForm',
+                'as' => 'dashboard.add'
+            ]);
+
+            Route::post('/user/dashboard/add', [
+                'uses' => 'UniversityController@addUniversity',
+                'as' => 'dashboard.add'
+            ]);
+
+            Route::get('/user/dashboard/users', [
+                'uses' => 'UserController@getUsers',
+                'as' => 'dashboard.users'
+            ]);
+
+            Route::get('/user/dashboard/demote/{id}', [
+                'uses' => 'UserController@demoteUser',
+                'as' => 'dashboard.demote'
+            ]);
+
+            Route::get('/user/dashboard/promote/{id}', [
+                'uses' => 'UserController@promoteUser',
+                'as' => 'dashboard.promote'
+            ]);
+        });
+
     });
 });

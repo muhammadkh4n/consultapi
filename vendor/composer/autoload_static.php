@@ -276,6 +276,9 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
 
     public static $classMap = array (
         'AddRoleToUsers' => __DIR__ . '/../..' . '/database/migrations/2016_08_07_085558_add_role_to_users.php',
+        'CreateCoursesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_122217_create_courses_table.php',
+        'CreateFieldsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_122146_create_fields_table.php',
+        'CreateLevelsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_130918_create_levels_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUniversitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_04_073832_create_universities_table.php',
         'CreateUniversityInfosTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_04_075536_create_university_infos_table.php',
