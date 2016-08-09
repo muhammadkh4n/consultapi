@@ -1,23 +1,18 @@
-@extends('layouts.admin.master')
 
-@section('dashboard-title', 'Add University')
+  <form class="form-horizontal col-sm-12" id="uni-form" method="post" action="{{ route('add.university') }}">
 
-@section('dashboard-content')
-
-  <form class="form-horizontal col-sm-12 col-lg-11" id="uni-form" method="post">
-
-    <div class="form-group row {{ $errors->get('name') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('name') ? 'has-error has-feedback' : null }}">
       <label for="uni-name" class="col-sm-2 control-label">University Name</label>
       <div class="col-sm-10">
         <input name="name" type="text" class="form-control" id="uni-name" placeholder="University Name" value="{{ old('name') }}">
-        @if($errors->get('name'))
+        @if($errors->has('name'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('name')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('name') }}</span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('address') || $errors->get('city') || $errors->get('country') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('address') || $errors->has('city') || $errors->has('country') ? 'has-error has-feedback' : null }}">
       <label class="col-sm-2 control-label" for="uni-address">Address</label>
       <div class="col-sm-10">
         <div class="input-group">
@@ -31,59 +26,59 @@
             @endforeach
           </select>
         </div>
-        @if($errors->get('address') || $errors->get('city'))
+        @if($errors->has('address') || $errors->has('city'))
           <span id="help-uniname" class="help-block">
-            All fields are required.
+            {{ $errors->has('address') ? $errors->first('address') : null }} {{ $errors->has('city') ? $errors->first('city') : null }}
           </span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('email') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('email') ? 'has-error has-feedback' : null }}">
       <label for="uni-email" class="col-sm-2 control-label">Email</label>
       <div class="col-sm-10">
         <input name="email" type="text" class="form-control" id="uni-email" placeholder="University Email" value="{{ old('email') }}">
-        @if($errors->get('email'))
+        @if($errors->has('email'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('email')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('email') }}</span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('website') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('website') ? 'has-error has-feedback' : null }}">
       <label for="uni-site" class="col-sm-2 control-label">Website</label>
       <div class="col-sm-10">
         <input name="website" type="text" class="form-control" id="uni-site" placeholder="University Website" value="{{ old('website') }}">
-        @if($errors->get('website'))
+        @if($errors->has('website'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('website')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('website') }}</span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('established') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('established') ? 'has-error has-feedback' : null }}">
       <label for="uni-est" class="col-sm-2 control-label">Established In</label>
       <div class="col-sm-10">
         <input name="established" type="text" class="form-control" id="uni-est" placeholder="Established In" value="{{ old('established') }}">
-        @if($errors->get('established'))
+        @if($errors->has('established'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('established')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('established') }}</span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('rank') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('rank') ? 'has-error has-feedback' : null }}">
       <label for="uni-rank" class="col-sm-2 control-label">Rank</label>
       <div class="col-sm-10">
         <input name="rank" type="text" class="form-control" id="uni-rank" placeholder="University Rank" value="{{ old('rank') }}">
-        @if($errors->get('rank'))
+        @if($errors->has('rank'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('rank')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('rank') }}</span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('population') || $errors->get('intpopulation') || $errors->get('pkpopulation') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('population') || $errors->has('intpopulation') || $errors->has('pkpopulation') ? 'has-error has-feedback' : null }}">
       <label class="col-sm-2 control-label" for="uni-pop">Student Population</label>
       <div class="col-sm-10">
         <div class="input-group">
@@ -93,22 +88,22 @@
           <div class="input-group-addon">PK</div>
           <input name="pkpopulation" type="text" class="form-control" id="uni-pkpop" placeholder="Pakistani" value="{{ old('pkpopulation') }}">
         </div>
-        @if($errors->get('population') || $errors->get('intpopulation') || $errors->get('pkpopulation'))
+        @if($errors->has('population') || $errors->has('intpopulation') || $errors->has('pkpopulation'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
           <span id="help-uniname" class="help-block">
-            All fields are required and must ne in numeric form. e.g. 9000
+            {{ $errors->has('population') ? $errors->first('population') : null }} {{ $errors->has('intpopulation') ? $errors->first('intpopulation') : null }} {{ $errors->has('pkpopulation') ? $errors->first('pkpopulation') : null }}
           </span>
         @endif
       </div>
     </div>
 
-    <div class="form-group row {{ $errors->get('extracur') ? 'has-error has-feedback' : null }}">
+    <div class="form-group row {{ $errors->has('extracur') ? 'has-error has-feedback' : null }}">
       <label for="uni-extra" class="col-sm-2 control-label">Extracurricular</label>
       <div class="col-sm-10">
         <textarea name="extracur" class="form-control" id="uni-extra" placeholder="Extracurricular" rows="5">{{ old('extracur') }}</textarea>
-        @if($errors->get('extracur'))
+        @if($errors->has('extracur'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->get('extracur')[0] }}</span>
+          <span id="help-uniname" class="help-block">{{ $errors->first('extracur') }}</span>
         @endif
       </div>
     </div>
@@ -120,9 +115,3 @@
     </div>
     {{ csrf_field() }}
   </form>
-
-  <div>
-
-  </div>
-
-@endsection

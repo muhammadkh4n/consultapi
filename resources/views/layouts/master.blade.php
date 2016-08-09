@@ -35,8 +35,6 @@
   var modalLogin = modal.html();
   var modalRegister;
 
-  console.log({{ auth()->check() }});
-
   function getModal() {
     modal.html(spinner);
     $.ajax({

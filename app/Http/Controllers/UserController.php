@@ -16,33 +16,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getUsers(Request $req) {
-        if (!$req->user()->admin)
-            return redirect()->route('admin.dashboard');
-        $users = User::all();
-
-        return view('admin.dashboard-users', ['users' => $users]);
-    }
-
-    public function promoteUser($id) {
-        $user = User::find($id);
-        $user->admin = true;
-        $user->save();
-
-        return redirect()->back()->with(['success' => 'User #' . $user->id . ' => ' . $user->name . ' Set to Admin']);
-    }
-
-    public function demoteUser(Request $req, $id) {
-        if ($req->user()->id == $id) {
-            return redirect()->back()->with(['fail' => 'You can\'t demote Yourself']);
-        }
-        $user = User::find($id);
-        $user->admin = false;
-        $user->save();
-
-        return redirect()->back()->with(['success' => 'User #' . $user->id . ' => ' . $user->name . ' Set to Normal User']);
-    }
-
+    /*
+     * Gets the registration form into the modal.
+     */
     public function getRegister(Request $req) {
         if ($req->ajax()) {
             $html = view('includes.modals.register')->render();
@@ -52,6 +28,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    /*
+     * Posts registration form to the server
+     */
     public function postRegister(Request $req) {
         if ($req->ajax()) {
             $this->validate($req, [
@@ -73,6 +52,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    /*
+     * Post login form to server. And logs in the user.
+     */
     public function postLogin(Request $req) {
         if ($req->ajax()) {
             $this->validate($req, [
@@ -96,6 +78,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    /*
+     * Logs out the user
+     */
     public function getLogout() {
         Auth::logout();
 

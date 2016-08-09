@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 
     /*
      * --------------------------------------------
-     *           ALL ACCOUNT ROUTES
+     *           LOGIN/LOGOUT ROUTES
      * --------------------------------------------
      */
     Route::group(['as' => 'user.'], function () {
@@ -63,39 +63,61 @@ Route::group(['middleware' => ['web']], function () {
      */
     Route::group(['middleware' => 'auth'], function () {
 
-        /*
-         * ADMIN ROUTES
+        /* --------------------------------
+         * ================================
+         * ADMIN Only Routes.
+         * ================================
+         * --------------------------------
          */
-        Route::group(['as' => 'admin.'], function () {
+        Route::group(['middleware' => 'admin'], function () {
 
-            Route::get('/user/dashboard', [
-                'uses' => 'UniversityController@getUniversities',
+            /*
+         * University Info Add Routes (POST DATA)
+         */
+            Route::group(['as' => 'add.', 'prefix' => 'add'], function () {
+
+                Route::post('university', [
+                    'uses' => 'DashboardController@addUniversity',
+                    'as' => 'university'
+                ]);
+
+            });
+
+            /*
+             * Admin Dashboard ROUTES
+             */
+            Route::group(['as' => 'admin.'], function () {
+
+                Route::get('/dashboard/university-list', [
+                    'uses' => 'DashboardController@getUniversityList',
+                    'as' => 'dashboard.unis'
+                ]);
+
+                Route::get('/dashboard/user-list', [
+                    'uses' => 'DashboardController@getUserList',
+                    'as' => 'dashboard.users'
+                ]);
+
+                Route::get('/dashboard/demote/{id}', [
+                    'uses' => 'DashboardController@demoteUser',
+                    'as' => 'dashboard.demote'
+                ]);
+
+                Route::get('/dashboard/promote/{id}', [
+                    'uses' => 'DashboardController@promoteUser',
+                    'as' => 'dashboard.promote'
+                ]);
+            });
+
+        });
+
+        /*
+         * User Dashboard Routes
+         */
+        Route::group(['as' => 'user.'], function () {
+            Route::get('/dashboard', [
+                'uses' => 'DashboardController@getDashboard',
                 'as' => 'dashboard'
-            ]);
-
-            Route::get('/user/dashboard/add', [
-                'uses' => 'UniversityController@getUniversityForm',
-                'as' => 'dashboard.add'
-            ]);
-
-            Route::post('/user/dashboard/add', [
-                'uses' => 'UniversityController@addUniversity',
-                'as' => 'dashboard.add'
-            ]);
-
-            Route::get('/user/dashboard/users', [
-                'uses' => 'UserController@getUsers',
-                'as' => 'dashboard.users'
-            ]);
-
-            Route::get('/user/dashboard/demote/{id}', [
-                'uses' => 'UserController@demoteUser',
-                'as' => 'dashboard.demote'
-            ]);
-
-            Route::get('/user/dashboard/promote/{id}', [
-                'uses' => 'UserController@promoteUser',
-                'as' => 'dashboard.promote'
             ]);
         });
 

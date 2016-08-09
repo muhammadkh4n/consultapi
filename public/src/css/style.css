@@ -24,9 +24,25 @@ body {
   padding: 0;
   padding-bottom: 52px;
 }
-#dashboard-content h4 {
+#dashboard-content h4.page-header {
   padding: 20px 0;
   margin: 0;
+}
+#dashboard-content #university-form-panel .panel-heading {
+  padding: 0;
+}
+#dashboard-content #university-form-panel .panel-heading a {
+  position: relative;
+  padding: 10px 5px;
+  display: block;
+  color: #ffffff;
+  font-size: 1.4em;
+}
+#dashboard-content #university-form-panel .panel-heading a i {
+  position: absolute;
+  vertical-align: middle;
+  right: 15px;
+  top: 13px;
 }
 #dashboard-sidebar .list-group {
   border: none;
