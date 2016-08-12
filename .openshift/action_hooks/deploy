@@ -67,6 +67,9 @@ fi
 
 echo "Running 'php artisan migrate --force'..."
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+php artisan clear-compiled
+$OPENSHIFT_PHP_DIR/composer/bin/composer dump-autoload
+php artisan optimize
 php artisan config:cache
 php artisan migrate:refresh --force
 popd > /dev/null
