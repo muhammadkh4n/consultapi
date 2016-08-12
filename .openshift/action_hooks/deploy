@@ -71,5 +71,5 @@ php artisan clear-compiled
 $OPENSHIFT_PHP_DIR/composer/bin/composer dump-autoload
 php artisan optimize
 php artisan config:cache
-php artisan migrate:refresh --force
+php artisan migrate --force
 popd > /dev/null
