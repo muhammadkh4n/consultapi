@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Level extends Model
 {
-    public function universities() {
-        return $this->belongsTo('App\University');
+    public function field_props() {
+        return $this->hasMany('App\FieldProp');
     }
 
-    public function fields() {
-        return $this->hasMany('App\Field');
+    public function level_props() {
+        return $this->hasMany('App\LevelProp');
+    }
+
+    public function courses() {
+        return $this->hasMany('App\Course');
     }
 }

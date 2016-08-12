@@ -76,6 +76,8 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\' => 16,
         ),
         'C' => 
         array (
@@ -203,6 +205,14 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -260,9 +270,25 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         ),
         'D' => 
         array (
+            'Doctrine\\DBAL\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
+            ),
+            'Doctrine\\Common\\Lexer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
+            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
+            'Doctrine\\Common\\Collections\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/collections/lib',
+            ),
+            'Doctrine\\Common\\Annotations\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/annotations/lib',
             ),
         ),
         'C' => 
@@ -275,9 +301,11 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
     );
 
     public static $classMap = array (
-        'AddRoleToUsers' => __DIR__ . '/../..' . '/database/migrations/2016_08_07_085558_add_role_to_users.php',
+        'CourseSeeder' => __DIR__ . '/../..' . '/database/seeds/CourseSeeder.php',
         'CreateCoursesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_122217_create_courses_table.php',
+        'CreateFieldPropsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_11_073213_create_field_props_table.php',
         'CreateFieldsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_122146_create_fields_table.php',
+        'CreateLevelPropsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_11_073548_create_level_props_table.php',
         'CreateLevelsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_130918_create_levels_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUniversitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_04_073832_create_universities_table.php',
@@ -285,6 +313,7 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         'CreateUserLoginLogsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_08_061740_create_user_login_logs_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'FieldSeeder' => __DIR__ . '/../..' . '/database/seeds/FieldSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -357,6 +386,7 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+        'LevelSeeder' => __DIR__ . '/../..' . '/database/seeds/LevelSeeder.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -791,6 +821,7 @@ class ComposerStaticInit83381b1b4e6fd063770bb827723ede57
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'UniversitySeeder' => __DIR__ . '/../..' . '/database/seeds/UniversitySeeder.php',
+        'UserSeeder' => __DIR__ . '/../..' . '/database/seeds/UserSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

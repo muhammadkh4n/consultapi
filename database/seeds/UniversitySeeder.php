@@ -25,11 +25,13 @@ class UniversitySeeder extends Seeder
         $university_info = new UniversityInfo();
         $university_info->established = 1980;
         $university_info->rank = 300;
+        $university_info->latitude = 44.231;
+        $university_info->longitude = 76.324;
         $university_info->population = 10234;
         $university_info->intpopulation = 4000;
         $university_info->pkpopulation = 300;
         $university_info->extracur = "It has cricket. football and etc.";
 
-        $university->university_info()->save($university_info);
+        $university->info()->save($university_info);
     }
 }

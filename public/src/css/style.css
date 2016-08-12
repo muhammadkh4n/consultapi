@@ -28,21 +28,36 @@ body {
   padding: 20px 0;
   margin: 0;
 }
-#dashboard-content #university-form-panel .panel-heading {
+#dashboard-content .panel .panel-add-button {
   padding: 0;
 }
-#dashboard-content #university-form-panel .panel-heading a {
+#dashboard-content .panel .panel-add-button a {
   position: relative;
   padding: 10px 5px;
   display: block;
   color: #ffffff;
   font-size: 1.4em;
 }
-#dashboard-content #university-form-panel .panel-heading a i {
+#dashboard-content .panel .panel-add-button a i {
   position: absolute;
   vertical-align: middle;
   right: 15px;
   top: 13px;
+}
+#dashboard-content .uni-levels-fields {
+  padding: 20px 20px 0;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+}
+#dashboard-content .levels-and-fields {
+  padding: 20px 20px;
+}
+#dashboard-content .levels-and-fields h1 {
+  display: inline-block;
+  margin: 0;
+}
+#dashboard-content .levels-and-fields h1 span {
+  display: inline-block;
 }
 #dashboard-sidebar .list-group {
   border: none;

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Field;
+use App\Level;
 use App\University;
-use App\UniversityInfo;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class DashboardController extends Controller
      */
     public function getDashboard(Request $req) {
         $user = $req->user();
+
         return view('user.dashboard', ['user' => $user]);
     }
 
@@ -29,10 +31,10 @@ class DashboardController extends Controller
     //            ADMIN USERS
     //----------------------------------------------------------------
 
-    /*
+    /**
      * Gets University list in the dashboard.
      */
-    public function getUniversityList(Request $req) {
+    public function getUniversityList() {
 
         $countries = CountryListFacade::getList('en', 'php', 'cldr');
         $universities = University::orderBy('created_at', 'desc')->get();
@@ -40,46 +42,42 @@ class DashboardController extends Controller
         return view('admin.uni_list', ['universities' => $universities, 'countries' => $countries]);
     }
 
-    /*
-     * Add University to the Database. in dashboard view.
+    /**
+     * Gets data for a university by uni_id.
+     * @param $uni_id University id.
+     * @return View with data.
      */
-    public function addUniversity(Request $req) {
+    public function getUniversity($uni_id) {
+        $fields = Field::all();
+        $levels = Level::all();
 
-        $this->validate($req, [
-            'name' => 'required|unique:universities|regex:/^[\pL\s]+$/u',
-            'address' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'email' => 'required|email',
-            'website' => 'required|url',
-            'established' => 'required|digits:4',
-            'rank' => 'required|numeric',
-            'population' => 'required|numeric',
-            'intpopulation' => 'required|numeric|max:' . $req['population'],
-            'pkpopulation' => 'required|numeric|max:' . $req['population'],
-            'extracur' => 'required',
+        $university = University::find($uni_id);
+        $level_props = $university->level_props()->get();
+        $field_props = $university->field_props()->get();
+        $courses = $university->courses()->get();
+
+        return view('admin.uni_info', [
+            'levels' => $levels,
+            'fields' => $fields,
+            'university' => $university,
+            'level_props' => $level_props,
+            'field_props' => $field_props,
+            'courses' => $courses,
         ]);
+    }
 
-        $university = new University();
-        $university->name = $req['name'];
-        $university->address = $req['address'];
-        $university->city = $req['city'];
-        $university->country = $req['country'];
-        $university->email = $req['email'];
-        $university->website = $req['website'];
-        $university->save();
+    /**
+     * Gets all the levels and fields.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getLevelsAndFields() {
+        $levels = Level::all();
+        $fields = Field::all();
 
-        $university_info = new UniversityInfo();
-        $university_info->established = $req['established'];
-        $university_info->rank = $req['rank'];
-        $university_info->population = $req['population'];
-        $university_info->intpopulation = $req['intpopulation'];
-        $university_info->pkpopulation = $req['pkpopulation'];
-        $university_info->extracur = $req['extracur'];
-
-        $university->university_info()->save($university_info);
-
-        return redirect()->back()->with(['success' => 'University Added Successfully!']);
+        return view('admin.levels_and_fields', [
+            'levels' => $levels,
+            'fields' => $fields,
+        ]);
     }
 
     /*

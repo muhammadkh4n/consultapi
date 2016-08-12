@@ -77,8 +77,33 @@ Route::group(['middleware' => ['web']], function () {
             Route::group(['as' => 'add.', 'prefix' => 'add'], function () {
 
                 Route::post('university', [
-                    'uses' => 'DashboardController@addUniversity',
+                    'uses' => 'UniversityDataAddController@addUniversity',
                     'as' => 'university'
+                ]);
+
+                Route::post('level', [
+                    'uses' => 'UniversityDataAddController@addLevel',
+                    'as' => 'level'
+                ]);
+
+                Route::post('level_props', [
+                    'uses' => 'UniversityDataAddController@addLevelProps',
+                    'as' => 'level.props'
+                ]);
+
+                Route::post('field', [
+                    'uses' => 'UniversityDataAddController@addField',
+                    'as' => 'field'
+                ]);
+
+                Route::post('field_props', [
+                    'uses' => 'UniversityDataAddController@addFieldProps',
+                    'as' => 'field.props'
+                ]);
+
+                Route::post('course', [
+                    'uses' => 'UniversityDataAddController@addCourse',
+                    'as' => 'course'
                 ]);
 
             });
@@ -88,12 +113,22 @@ Route::group(['middleware' => ['web']], function () {
              */
             Route::group(['as' => 'admin.'], function () {
 
-                Route::get('/dashboard/university-list', [
+                Route::get('/dashboard/universities', [
                     'uses' => 'DashboardController@getUniversityList',
                     'as' => 'dashboard.unis'
                 ]);
 
-                Route::get('/dashboard/user-list', [
+                Route::get('/dashboard/universities/{uni_id}', [
+                    'uses' => 'DashboardController@getUniversity',
+                    'as' => 'dashboard.uni'
+                ]);
+
+                Route::get('/dashboard/levels_and_fields', [
+                    'uses' => 'DashboardController@getLevelsAndFields',
+                    'as' => 'dashboard.laf'
+                ]);
+
+                Route::get('/dashboard/users', [
                     'uses' => 'DashboardController@getUserList',
                     'as' => 'dashboard.users'
                 ]);

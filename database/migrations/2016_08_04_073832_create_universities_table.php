@@ -14,12 +14,12 @@ class CreateUniversitiesTable extends Migration
     {
         Schema::create('universities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('address');
             $table->string('city');
             $table->string('country');
             $table->string('email');
-            $table->string('website');
+            $table->string('website')->unique();
             $table->timestamps();
         });
     }

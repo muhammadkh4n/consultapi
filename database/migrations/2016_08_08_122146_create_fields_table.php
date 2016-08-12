@@ -14,12 +14,7 @@ class CreateFieldsTable extends Migration
     {
         Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level_id');
-            $table->string('field_name');
-            $table->integer('field_rank');
-            $table->integer('field_tuition');
-            $table->text('ent_req');
-            $table->integer('duration');
+            $table->string('field_name')->unique();
             $table->timestamps();
         });
     }

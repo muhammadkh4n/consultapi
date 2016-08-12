@@ -16,10 +16,12 @@ class CreateUniversityInfosTable extends Migration
             $table->increments('id');
             $table->integer('university_id');
             $table->integer('established');
-            $table->integer('rank');
+            $table->integer('rank')->nullable();
             $table->integer('population');
             $table->integer('intpopulation');
             $table->integer('pkpopulation');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->text('extracur');
             $table->timestamps();
         });

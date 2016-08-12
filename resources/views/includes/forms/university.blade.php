@@ -1,5 +1,5 @@
 
-  <form class="form-horizontal col-sm-12" id="uni-form" method="post" action="{{ route('add.university') }}">
+  <form class="form-horizontal col-sm-12" method="post" action="{{ route('add.university') }}">
 
     <div class="form-group row {{ $errors->has('name') ? 'has-error has-feedback' : null }}">
       <label for="uni-name" class="col-sm-2 control-label">University Name</label>
@@ -21,14 +21,33 @@
           <input name="city" type="text" class="form-control" id="uni-city" placeholder="City" value="{{ old('city') }}">
           <span class="input-group-addon">Country</span>
           <select class="form-control" name="country">
+            <option value="" selected>Select Country</option>
             @foreach($countries as $country)
               <option value="{{ $country }}" {{ $country === old('country') ? 'selected' : null }}>{{ $country }}</option>
             @endforeach
           </select>
         </div>
-        @if($errors->has('address') || $errors->has('city'))
-          <span id="help-uniname" class="help-block">
-            {{ $errors->has('address') ? $errors->first('address') : null }} {{ $errors->has('city') ? $errors->first('city') : null }}
+        @if($errors->has('address') || $errors->has('city') || $errors->has('country'))
+          <span id="help-address" class="help-block">
+            {{ $errors->has('address') ? $errors->first('address') : null }} {{ $errors->has('city') ? $errors->first('city') : null }} {{ $errors->has('country') ? $errors->first('country') : null }}
+          </span>
+        @endif
+      </div>
+    </div>
+
+    <div class="form-group row {{ $errors->has('latitude') || $errors->has('longitude') ? 'has-error has-feedback' : null }}">
+      <label class="col-sm-2 control-label" for="latitude">Coordinates</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <div class="input-group-addon">LAT</div>
+          <input name="latitude" type="text" class="form-control" id="latitude" placeholder="Latitude" value="{{ old('latitude') }}">
+          <div class="input-group-addon">LON</div>
+          <input name="longitude" type="text" class="form-control" id="longitude" placeholder="Longitude" value="{{ old('longitude') }}">
+        </div>
+        @if($errors->has('latitude') || $errors->has('longitude'))
+          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+          <span id="help-coordinates" class="help-block">
+            {{ $errors->has('latitude') ? $errors->first('latitude') : null }} {{ $errors->has('longitude') ? $errors->first('longitude') : null }}
           </span>
         @endif
       </div>
@@ -40,7 +59,7 @@
         <input name="email" type="text" class="form-control" id="uni-email" placeholder="University Email" value="{{ old('email') }}">
         @if($errors->has('email'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->first('email') }}</span>
+          <span id="help-email" class="help-block">{{ $errors->first('email') }}</span>
         @endif
       </div>
     </div>
@@ -51,7 +70,7 @@
         <input name="website" type="text" class="form-control" id="uni-site" placeholder="University Website" value="{{ old('website') }}">
         @if($errors->has('website'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->first('website') }}</span>
+          <span id="help-website" class="help-block">{{ $errors->first('website') }}</span>
         @endif
       </div>
     </div>
@@ -62,7 +81,7 @@
         <input name="established" type="text" class="form-control" id="uni-est" placeholder="Established In" value="{{ old('established') }}">
         @if($errors->has('established'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->first('established') }}</span>
+          <span id="help-established" class="help-block">{{ $errors->first('established') }}</span>
         @endif
       </div>
     </div>
@@ -73,7 +92,7 @@
         <input name="rank" type="text" class="form-control" id="uni-rank" placeholder="University Rank" value="{{ old('rank') }}">
         @if($errors->has('rank'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->first('rank') }}</span>
+          <span id="help-rank" class="help-block">{{ $errors->first('rank') }}</span>
         @endif
       </div>
     </div>
@@ -90,7 +109,7 @@
         </div>
         @if($errors->has('population') || $errors->has('intpopulation') || $errors->has('pkpopulation'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">
+          <span id="help-population" class="help-block">
             {{ $errors->has('population') ? $errors->first('population') : null }} {{ $errors->has('intpopulation') ? $errors->first('intpopulation') : null }} {{ $errors->has('pkpopulation') ? $errors->first('pkpopulation') : null }}
           </span>
         @endif
@@ -103,7 +122,7 @@
         <textarea name="extracur" class="form-control" id="uni-extra" placeholder="Extracurricular" rows="5">{{ old('extracur') }}</textarea>
         @if($errors->has('extracur'))
           <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          <span id="help-uniname" class="help-block">{{ $errors->first('extracur') }}</span>
+          <span id="help-extracur" class="help-block">{{ $errors->first('extracur') }}</span>
         @endif
       </div>
     </div>

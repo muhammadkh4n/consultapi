@@ -11,6 +11,7 @@
         <a href="{{ route('user.dashboard') }}" class="list-group-item {{ @url()->current() === @url()->route('user.dashboard') ? 'active' : null }}">Profile</a>
         @if (auth()->user()->admin)
           <a href="{{ route('admin.dashboard.unis') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.unis') ? 'active' : null }}">All Universities</a>
+          <a href="{{ route('admin.dashboard.laf') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.laf') ? 'active' : null }}">Levels and Fields</a>
           <a href="{{ route('admin.dashboard.users') }}" class="list-group-item {{ @url()->current() === @url()->route('admin.dashboard.users') ? 'active' : null }}">All Users</a>
         @endif
       </div>

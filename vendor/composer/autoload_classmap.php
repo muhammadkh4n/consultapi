@@ -6,9 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddRoleToUsers' => $baseDir . '/database/migrations/2016_08_07_085558_add_role_to_users.php',
+    'CourseSeeder' => $baseDir . '/database/seeds/CourseSeeder.php',
     'CreateCoursesTable' => $baseDir . '/database/migrations/2016_08_08_122217_create_courses_table.php',
+    'CreateFieldPropsTable' => $baseDir . '/database/migrations/2016_08_11_073213_create_field_props_table.php',
     'CreateFieldsTable' => $baseDir . '/database/migrations/2016_08_08_122146_create_fields_table.php',
+    'CreateLevelPropsTable' => $baseDir . '/database/migrations/2016_08_11_073548_create_level_props_table.php',
     'CreateLevelsTable' => $baseDir . '/database/migrations/2016_08_08_130918_create_levels_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUniversitiesTable' => $baseDir . '/database/migrations/2016_08_04_073832_create_universities_table.php',
@@ -16,6 +18,7 @@ return array(
     'CreateUserLoginLogsTable' => $baseDir . '/database/migrations/2016_08_08_061740_create_user_login_logs_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'FieldSeeder' => $baseDir . '/database/seeds/FieldSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -88,6 +91,7 @@ return array(
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'LevelSeeder' => $baseDir . '/database/seeds/LevelSeeder.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -522,4 +526,5 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UniversitySeeder' => $baseDir . '/database/seeds/UniversitySeeder.php',
+    'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',
 );
