@@ -23,6 +23,28 @@
       </div>
     @endif
 
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="text-center">University Info</h3>
+          <dl class="dl-horizontal">
+            <dt>Address:</dt>
+            <dd>{{ $university->address }}, {{ $university->city }}, {{ $university->country }}</dd>
+            <dt>Coordinates:</dt>
+            <dd>{{ $university->info->latitude }}, {{ $university->info->longitude }}</dd>
+            <dt>Email:</dt>
+            <dd>{{ $university->email }}</dd>
+            <dt>Established:</dt>
+            <dd>{{ $university->info->established }}</dd>
+            <dt>Rank:</dt>
+            <dd>{{ $university->info->rank }}</dd>
+            <dt>Pop (Total, Int, Pak):</dt>
+            <dd>{{ $university->info->population }}, {{ $university->info->intpopulation }}, {{ $university->info->pkpopulation }}</dd>
+            <dt>Extracurricular:</dt>
+            <dd><pre>{{ $university->info->extracur }}</pre></dd>
+          </dl>
+        </div>
+      </div>
+
     {{-- Level Panel --}}
     <div class="panel panel-success" id="level-form-panel">
       <div class="panel-heading panel-add-button" role="tab">
