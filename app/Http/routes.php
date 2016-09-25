@@ -72,8 +72,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['middleware' => 'admin'], function () {
 
             /*
-         * University Info Add Routes (POST DATA)
-         */
+             * University Info Add Routes (POST DATA)
+             */
             Route::group(['as' => 'add.', 'prefix' => 'add'], function () {
 
                 Route::post('university', [
@@ -106,6 +106,13 @@ Route::group(['middleware' => ['web']], function () {
                     'as' => 'course'
                 ]);
 
+            });
+
+            Route::group(['as' => 'edit.', 'prefix' => 'edit'], function () {
+                Route::get('university', [
+                    'uses' => 'UniversityDataEditController@editUniversity',
+                    'as' => 'university'
+                ]);
             });
 
             /*
